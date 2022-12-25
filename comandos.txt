@@ -1,0 +1,9 @@
+npm i express dotenv
+npm i nodemon
+npm i @prisma/client
+npm i prisma -D
+npx prisma migrate dev
+npx prisma studio
+npm i bcryptjs
+npm i jsonwebtoken
+npm i @hapi/joi
