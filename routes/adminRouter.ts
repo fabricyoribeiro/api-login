@@ -1,9 +1,9 @@
-const express = require('express')
+import express,  { Request, Response } from 'express'
+import  {auth} from '../controllers/authController'
+
 const router = express.Router()
 
-const auth = require('../controllers/authController')
-
-router.get('/', auth, (req, res)=> {
+router.get('/', auth, (req: Request, res: Response)=> {
   if(req.user.admin){
     res.send('esse dado é de admin')
   }else{

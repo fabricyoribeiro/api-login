@@ -7,3 +7,18 @@ npx prisma studio
 npm i bcryptjs
 npm i jsonwebtoken
 npm i @hapi/joi
+
+//...
+npm i typescript -D
+npm i ts-node-dev -D
+npm i tsx
+npm i tsx -D (automatiza processor de compilar codigo e executar)
+npx tsc --init
+npx tsc (converte ts em js)
+npm run build (converte typescript em js)
+npm install express
+npm i @types/express -D
+npm i express dotenv
+npm i @types/dotenv -D
+npm i bcrypt @types/bcrypt
+npm i jsonwebtoken @types/jsonwebt

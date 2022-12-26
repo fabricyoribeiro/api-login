@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 //   password: '1234567'
 // }
 
-// const secret = 'abcdefghijklmnopqrstuvwxyz'
+const secret = 'abcdefghijklmnopqrstuvwxyz'
 // const token = jwt.sign({id: user.id, username:user.username}, secret, {expiresIn: 20})
 
 // console.log(token)

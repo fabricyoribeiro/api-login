@@ -1,10 +1,17 @@
-const prisma = require('../lib/prisma')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+import { prisma } from '../lib/prisma'
+import * as bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken'
+import { Request, Response } from 'express'
+import { loginValidate, registerValidate} from './validate'
 
-const { loginValidate, registerValidate} = require('./validate')
 
-async function register(req,res){
+declare var process : {
+  env: {
+    TOKEN_SECRET: string
+  }
+}
+
+export async function register(req: Request,res: Response){
   const {error} = registerValidate(req.body)
   if(error) {return res.status(400).send(error.message)}
 
@@ -17,18 +24,20 @@ async function register(req,res){
   if(findUser)
     return res.status(400).send('Email já existe')
 
+  const salt = bcrypt.genSaltSync(10);
+
   const user = await prisma.user.create({
     data: {
       name: req.body.name,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password)
+      password: bcrypt.hashSync(req.body.password, salt)
     }
   })
 
   res.status(200).send(user)
 }
 
-async function login(req,res){
+export async function login(req: Request,res: Response){
   const {error} = loginValidate(req.body)
   if(error) {return res.status(400).send(error.message)}
 
@@ -52,4 +61,4 @@ async function login(req,res){
   res.send('User Logged')
 }
 
-module.exports = {register, login}
+// module.exports = {register, login}
