@@ -18,5 +18,3 @@ export const loginValidate = (data:any)=> {
 
   return schema.validate(data)
 }
-
-// module.exports = {registerValidate, loginValidate}

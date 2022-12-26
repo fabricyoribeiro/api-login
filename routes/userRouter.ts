@@ -1,5 +1,4 @@
 import express from 'express'
-// const userController = require('../controllers/userController')
 import {login, register} from '../controllers/userController'
 
 const router = express.Router()

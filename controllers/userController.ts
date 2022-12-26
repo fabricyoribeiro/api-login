@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 import { Request, Response } from 'express'
 import { loginValidate, registerValidate} from './validate'
 
-
 declare var process : {
   env: {
     TOKEN_SECRET: string
@@ -16,9 +15,10 @@ export async function register(req: Request,res: Response){
   if(error) {return res.status(400).send(error.message)}
 
   const findUser = await prisma.user.findUnique({
-    where: {
-      email: req.body.email
-    }
+      
+      where:{
+        email: req.body.email
+      }
   })
 
   if(findUser)
@@ -55,10 +55,8 @@ export async function login(req: Request,res: Response){
   if(!passwordAndUserMacth)
     return res.status(400).send('Email ou senha incorreta')
 
-  const token = jwt.sign({_id: findUser._id, admin:findUser.admin}, process.env.TOKEN_SECRET)
+  const token = jwt.sign({id: findUser.id, admin:findUser.admin}, process.env.TOKEN_SECRET)
 
   res.header('authorization-token', token)
   res.send('User Logged')
 }
-
-// module.exports = {register, login}

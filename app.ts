@@ -1,9 +1,8 @@
 require('dotenv').config()
 import express from 'express'
-const app = express()
 const userRouter = require('./routes/userRouter')
-// import {} from './routes/userRouter'
 const adminRouter = require('./routes/adminRouter')
+const app = express()
 
 app.use('/user', express.json(), userRouter)
 

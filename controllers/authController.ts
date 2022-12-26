@@ -1,7 +1,4 @@
 import jwt from 'jsonwebtoken'
-// import dotenv from 'dotenv'
-// dotenv.config()
-// import { env } from 'process';
 
 declare var process : {
   env: {
